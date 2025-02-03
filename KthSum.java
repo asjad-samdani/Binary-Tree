@@ -14,7 +14,7 @@ class Node {
   }
 }
 
-public class KthNodeSum {
+public class KthSum {
   static int idx = -1;
 
   public static Node buildTree(int[] node) {
