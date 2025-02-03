@@ -1,4 +1,3 @@
-
 class Node {
   int data;
   Node left;
@@ -31,6 +30,7 @@ public class Diameter {
 
   }
 
+  // Time complexity(0(N^2));
   public static int diameter(Node node) {
     if (node == null)
       return 0;
@@ -40,10 +40,37 @@ public class Diameter {
     return Math.max(dia1, Math.max(dia2, dia3));
   }
 
+  // optimize approach-> Time Complexity(0(N))
+  static class TreeInfo {
+    int height;
+    int diameter;
+
+    public TreeInfo(int h, int d) {
+      this.height = h;
+      this.diameter = d;
+
+    }
+  }
+
+  public static TreeInfo optDia(Node node) {
+    if (node == null)
+      return new TreeInfo(0, 0);
+    TreeInfo left = optDia(node.left);
+    TreeInfo right = optDia(node.right);
+    int myHeight = Math.max(left.height, right.height) + 1;
+
+    int diam1 = left.diameter;
+    int dia2 = left.diameter;
+    int dia3 = left.height + right.height + 1;
+    int totalDiam = Math.max(diam1, Math.max(dia2, dia3));
+    return new TreeInfo(myHeight, totalDiam);
+
+  }
+
   public static void main(String[] args) {
     int nodes[] = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
     Node root = buildTree(nodes);
-    System.out.println(diameter(root));
+    System.out.println(optDia(root).diameter);
   }
 
 }
