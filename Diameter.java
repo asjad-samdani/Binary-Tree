@@ -55,6 +55,7 @@ public class Diameter {
   public static TreeInfo optDia(Node node) {
     if (node == null)
       return new TreeInfo(0, 0);
+
     TreeInfo left = optDia(node.left);
     TreeInfo right = optDia(node.right);
     int myHeight = Math.max(left.height, right.height) + 1;
