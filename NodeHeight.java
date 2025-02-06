@@ -26,7 +26,7 @@ public class NodeHeight {
 
   public static int totalHeight(Node node) {
     if (node == null)
-      return 0;
+      return -1;
     return Math.max(totalHeight(node.left), totalHeight(node.right)) + 1;
 
   }
